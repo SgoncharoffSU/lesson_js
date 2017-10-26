@@ -2,8 +2,10 @@
 var a = 0;
 while(a<100) {
     a++;
-    if(a>3 && (a % 2 == 0 || a % 3 ==0)){
+    if(a>3 && (a % 2 == 0 || a % 3 ==0)) {
      continue;
+    } else if( a<= 1){
+        continue;
     } else {
         document.write(a+' '); 
     }
