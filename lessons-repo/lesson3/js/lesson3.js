@@ -4,7 +4,7 @@ while(a<100) {
     a++;
     if(a>3 && (a % 2 == 0 || a % 3 ==0)) {
      continue;
-    } else if( a<= 1){
+    } else if(a <= 1){
         continue;
     } else {
         document.write(a+' '); 
@@ -35,7 +35,7 @@ for(var a = 1, b = ''; a <= 20; a++){
 
 /* Обратная пирамида (Делал для себя, что бы понять как это работает)
  Очень помог Рашид, без него бы не разобрался */
-for(var a = 21, b = 'xxxxxxxxxxxxxxxxxxxx'; a <= 41; a++){
+for(var a = 21, b = 'xxxxxxxxxxxxxxxxxxxx'; a <= 40; a++){
     b = b.slice(0, -1)
     console.log(b);
 }
