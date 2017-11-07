@@ -1,5 +1,5 @@
 
-// *************Задание 1*************
+// *************Задание 1 b 3*************
 /* Для пользователя работает корректно, но в консоль выдает ошибки,
  при отсутствии запрашиваемой картинки */
 
@@ -35,4 +35,8 @@ var leftArrow = document.getElementById('left-arrow-image'),
         
       });
       
+};
+function card(){
+ var bottonCard =  document.getElementsByClassName('inCard'),
+ var 
 };

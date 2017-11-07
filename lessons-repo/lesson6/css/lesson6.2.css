@@ -35,3 +35,18 @@ body {
   position: relative;
   top: 10px;
 }
+.wreper-card {
+  width: 1024px;
+  min-height: 550px;
+  margin: 100px auto;
+  background-color: aqua;
+  text-align: center;
+}
+.card {
+  height: 100px;
+}
+.h2card {
+  height: 50px;
+  padding: 30px;
+  font-size: 30px;
+}
