@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework6_2</title>
+    
+</head>
+<body>
+
+<script>
+        
+        
+            Cart = { all:0 };
+          
+                function CreateStuff(name, cost){
+
+                    this.name = name;
+                    this.cost = cost;
+                    this.buy =  function () {
+                        
+                        Cart.all += stuffArr[this.id].cost;
+                            
+                            if (isNaN( Cart[stuffArr[this.id].name] +1)) 
+                                {
+                                    Cart[stuffArr[this.id].name] = 0;
+                                }  
+                            
+                        Cart[stuffArr[this.id].name] +=1;     
+                        CartShow = document.getElementById("CartShow"); 
+                        CartShow.innerHTML = "Итого: " + Cart.all + " руб";  
+                         var str ="";
+                        Cartstuff = document.getElementById("CreateStuff"); 
+
+                            for(var key in Cart) {
+
+                                    if (key !="all")
+                                        { str = str+ key+": "+Cart[key] + " шт. <br>"
+
+                                        }
+
+                                }
+
+                    Cartstuff.innerHTML = str;  
+                
+            
+            } ;
+        }    
+        
+        var stuff1 = new CreateStuff("Товар1",350);
+        var stuff2 = new CreateStuff("Товар2",150);
+        var stuff3 = new CreateStuff("Товар3",250);
+        var stuffArr = [stuff1,stuff2,stuff3];
+      
+       
+        for (var stufff in stuffArr)
+            {  
+                var divEl = document.createElement("div");
+                var button = document.createElement("input");
+                divEl.innerHTML = "Название: "+stuffArr[stufff].name +" Цена: "+stuffArr[stufff].cost   +" руб. <br>";
+                button.id = stufff;
+                button.type = "button";
+                button.onclick = stuffArr[stufff].buy;
+                button.value ="Купить " + stuffArr[stufff].name;
+                divEl.appendChild(button);
+                document.body.appendChild(divEl); 
+                     
+            }
+        
+    </script>
+
+<hr> 
+    <h2>Корзина</h2>
+    <p id = "CreateStuff" > <p>
+    <p id = "CartShow" >Итого: 0 руб. </p>
+
+
+
+
+</body>
+</html>

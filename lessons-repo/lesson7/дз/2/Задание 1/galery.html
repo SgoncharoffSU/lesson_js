@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>galery</title>
+    <script>
+        window.onload=function () {
+            var image = document.getElementsByTagName('img');
+            for(var i=0;i<image.length;i++){
+                image[i].onclick=changeBigPicture;
+            }
+
+        };
+        function changeBigPicture(event) {
+            var appDiv=document.getElementById('bigPicture'); // div для большой картинки
+            appDiv.innerHTML='';
+            var eventElement = event.target;
+            console.log(event.target);
+            var imageNameParts=eventElement.id.split('_');
+            var src ='img/big/'+imageNameParts[1]+'.jpg';
+            var imageDOMElement=document.createElement('img'); 
+                     
+            imageDOMElement.src=src;
+            imageDOMElement.onerror = function(){ imageDOMElement.alt = "Большая картинка не найдена"; alert(" Большая картинка не найдена!") }
+         
+            appDiv.appendChild(imageDOMElement);
+        }
+    </script>
+</head>
+<body>
+<div id="bigPicture">Здесь большая картинка</div>
+<div>
+    <img id="img_1" src="img/small/1.jpg" alt="">
+    <img id="img_2" src="img/small/2.jpg" alt="">
+    <img id="img_3" src="img/small/3.jpg" alt="">
+</div>
+</body>
+</html>

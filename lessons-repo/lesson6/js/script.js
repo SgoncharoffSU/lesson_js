@@ -36,6 +36,3 @@ var leftArrow = document.getElementById('left-arrow-image'),
       });
       
 };
-function card(){
- var bottonCard =  document.getElementsByClassName('inCard'),
-};
