@@ -21,15 +21,26 @@ td.game-table-cell{
     border: 1px dotted #eee;
 }
 .snake-unit{
-    background-color: white;
+    background-color: burlywood;
+    border-radius: 80%;
+}
+.snake-head-rudius{
+    background-color: burlywood;
+    border-radius: 80%;
 }
 .food-unit{
     background-color: red;
+}
+.wall-unit {
+    background-color: wheat;
 }
 .buttons{
     display: inline-block;
 }
 #snake-wait{
+    display: none;
+}
+#snake-next{
     display: none;
 }
 .wrap{
@@ -40,9 +51,13 @@ td.game-table-cell{
     display: none;
 }
 #scoring{
-    width: 350px;
+    width: 332px;
     height: 50px;
-    background-color: aqua;
-    margin: 0 auto;
-    color: #000000;
+    background-color: #3e3e3e;
+    margin: 5px auto;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-top: 15px;
 }

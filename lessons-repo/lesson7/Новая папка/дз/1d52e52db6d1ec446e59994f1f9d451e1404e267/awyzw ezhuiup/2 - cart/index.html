@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Товары</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		body {
+			padding: 10px 0;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Товары</a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="row">
+
+			<div class="col-xs-1 col-sm-3">
+
+				<div class="thumbnail">
+
+					<img src="http://lorempixel.com/480/320/technics/1/" alt="" />
+
+					<div class="caption">
+
+						<h4>Планшет iPad</h4>
+
+						<p class="price">Цена: <span>1999</span> рублей</p>
+
+						<a class="btn btn-primary" href="#">Добавить в корзину</a>
+						
+					</div>
+					
+				</div>
+			
+			</div>
+
+			<div class="col-xs-1 col-sm-3">
+
+				<div class="thumbnail">
+
+					<img src="http://lorempixel.com/480/320/technics/2/" alt="" />
+
+					<div class="caption">
+
+						<h4>Музыкальная фигня</h4>
+
+						<p class="price">Цена: <span>2999</span> рублей</p>
+
+						<a class="btn btn-primary" href="#">Добавить в корзину</a>
+						
+					</div>
+					
+				</div>
+
+			</div>
+
+			<div class="col-xs-1 col-sm-3">
+
+				<div class="thumbnail">
+
+					<img src="http://lorempixel.com/480/320/technics/3/" alt="" />
+
+					<div class="caption">
+
+						<h4>Ноутбук Б/У</h4>
+
+						<p class="price">Цена: <span>3999</span> рублей</p>
+
+						<a class="btn btn-primary" href="#">Добавить в корзину</a>
+						
+					</div>
+					
+				</div>
+
+			</div>
+
+			<div class="col-xs-1 col-sm-3">
+
+				<div class="thumbnail">
+
+					<img src="http://lorempixel.com/480/320/technics/4/" alt="" />
+
+					<div class="caption">
+
+						<h4>Материнская плата</h4>
+
+						<p class="price">Цена: <span>4999</span> рублей</p>
+
+						<a class="btn btn-primary" href="#">Добавить в корзину</a>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+
+		<div class="panel panel-default">
+
+			<div class="panel-heading">Корзина:</div>
+
+			<div class="panel-body">
+
+				<p>Кликните на кнопку "Добавить в корзину" чтобы добавить нужный вам товар в этот список, подсчитать общую стоимость заказа и перейти к оплате.</p>
+				
+			</div>
+
+			<ul class="list-group">
+
+				<li class="list-group-item"><b>Общая стоимость:</b> <span class="total-price">0</span> рублей</li>
+				
+			</ul>
+			
+		</div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+
+	var totalPrice = $(".total-price");
+
+	var addToCart = function(param){
+		var item = param.parent(),
+			title = item.find("h4").text(),
+			price = item.find(".price span").text(),
+			cart = $(".list-group"),
+			cartItem = "<li class='list-group-item'>" + title + ": " + "<b>" + price + "</b> рублей <a class='btn-remove' href='#'>[х]</a></li>";
+		cart.prepend(cartItem);
+		totalPrice.text(parseInt(totalPrice.text()) + parseInt(price));
+	};
+
+	$(".btn").on("click", function(event){
+		event.preventDefault();
+		addToCart($(this));
+	});
+
+	$(document).on("click", ".btn-remove", function(event){
+		event.preventDefault();
+		var thisPrice = $(this).parent().find("b").text();
+		totalPrice.text(parseInt(totalPrice.text()) - parseInt(thisPrice)); 
+		$(this).parent().remove();
+	});
+
+	</script>
+	
+</body>
+</html>

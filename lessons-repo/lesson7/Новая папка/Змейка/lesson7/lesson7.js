@@ -8,7 +8,6 @@ var gameIsRunning = false; // Запущена ли игра
 var snake_timer; // Таймер змейки
 var food_timer; // Таймер для еды
 var score = 0; // Результат
-var level = 1;
 
 function init() {
     prepareGameField(); // Генерация поля
@@ -28,9 +27,6 @@ function init() {
     // События кнопок Старт и Новая игра
     document.getElementById('snake-start').addEventListener('click', startGame);
     document.getElementById('snake-renew').addEventListener('click', refreshGame);
-    document.getElementById('snake-wait').addEventListener('click', pauseGame);
-    
-   
 
 // Отслеживание клавиш клавиатуры
     addEventListener('keydown', changeDirection);
@@ -67,34 +63,13 @@ function prepareGameField() {
  * Старт игры
  */
 function startGame() {
-    var i = 0;
     gameIsRunning = true;
     respawn();
-    i++;
-    if(i > 0 && 1 < 2){
-        document.getElementById("snake-start").style.display = "none";
-        document.getElementById("snake-wait").style.display = "inline-block";
-        document.getElementById('snake-renew').style.display = "inline-block";
-        document.getElementById('scoring').innerHTML = 'Добро пожаловать в игру!';        
-        
-    } 
+
     snake_timer = setInterval(move, SNAKE_SPEED);
     setTimeout(createFood, 5000);
-        
 }
-//*****Функция паузы********
-function pauseGame(){
-    alert('Вы нажали паузу, для продолжения нажмите ОК'); 
-   
-}
-    //**********Уровень сложности********* 
-function levelGame() {
-    if(score % 5 == 0){
-        level++;
-        
-    }
-} 
-   
+
 /**
  * Функция расположения змейки на игровом поле
  */
@@ -124,13 +99,13 @@ function move() {
     //console.log('move',direction);
     // Сборка классов
     var snake_head_classes = snake[snake.length - 1].getAttribute('class').split(' ');
-    
+
     // Сдвиг головы
     var new_unit;
     var snake_coords = snake_head_classes[1].split('-');
     var coord_y = parseInt(snake_coords[1]);
     var coord_x = parseInt(snake_coords[2]);
-    
+
     // Определяем новую точку
     if (direction == 'x-') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x - 1))[0];
@@ -144,20 +119,15 @@ function move() {
     else if (direction == 'y-') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y + 1) + '-' + (coord_x))[0];
     }
-           
-    
 
     // Проверки
     // 1) new_unit не часть змейки
     // 2) Змейка не ушла за границу поля
     //console.log(new_unit);
-    
-
-     if (!isSnakeUnit(new_unit) && new_unit !== undefined) {
-         // Добавление новой части змейки
-         new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
-         snake.push(new_unit);
-         
+    if (!isSnakeUnit(new_unit) && new_unit !== undefined) {
+        // Добавление новой части змейки
+        new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
+        snake.push(new_unit);
 
         // Проверяем, надо ли убрать хвост
         if (!haveFood(new_unit)) {
@@ -167,12 +137,11 @@ function move() {
 
             // удаляем хвост
             removed.setAttribute('class', classes[0] + ' ' + classes[1]);
-       }    
+        }
     }
     else {
         finishTheGame();
     }
-
 }
 
 /**
@@ -202,16 +171,11 @@ function haveFood(unit) {
     if (unit_classes.includes('food-unit')) {
         check = true;
         createFood();
+
         score++;
-        wall();
-        levelGame();
-        //***Вывожу счетчик на табло***
-        document.getElementById('scoring').innerHTML = 'Количество съеденных кроликов- ' + score + '<br>Уровень сложности  ' + level;        
-        
     }
     return check;
 }
-
 
 /**
  * Создание еды
@@ -239,37 +203,6 @@ function createFood() {
         }
     }
 }
-//******Запуск и остановка преград********
-function wall() {
-    if(score % 5 == 0 && score % 10 !==0) {
-        createWall();      
-    }
-}
-        //*******Создание преград********
-function createWall() {
-    var wallCreated = false;
-    while (!wallCreated) {
-      // рандом
-      var wall_x = Math.floor(Math.random() * FIELD_SIZE_X);
-      var wall_y = Math.floor(Math.random() * FIELD_SIZE_Y);
-
-      var wall_cell = document.getElementsByClassName('cell-' + wall_y + '-' + wall_x)[0];
-      var wall_cell_classes = wall_cell.getAttribute('class').split(' ');
-
-      // проверка на змейку
-      if (!wall_cell_classes.includes('snake-unit')) {
-          var classes = '';
-          for (var i = 0; i < wall_cell_classes.length; i++) {
-              classes += wall_cell_classes[i] + ' ';
-          }
-
-          wall_cell.setAttribute('class', classes + 'wall-unit');
-          wallCreated = true;
-        } 
-    }
-
-}
-
 
 /**
  * Изменение направления движения змейки
@@ -300,18 +233,14 @@ function changeDirection(e) {
             break;
     }
 }
-    //refreshGame()
 
 /**
  * Функция завершения игры
  */
-function finishTheGame() {   
+function finishTheGame() {
     gameIsRunning = false;
     clearInterval(snake_timer);
-     document.getElementById("snake-wait").style.display = "none";   
-    document.getElementById("snake-renew").style.display = "inline-block";
-    document.getElementById('scoring').innerHTML = 'Вы проиграли<br>Количество съеденных кроликов- ' + score;        
-    
+    alert('Вы проиграли! Ваш результат: ' + score.toString());
 }
 
 /**
@@ -319,7 +248,6 @@ function finishTheGame() {
  */
 function refreshGame() {
     location.reload();
-
 }
 
 // Инициализация
